@@ -1,42 +1,52 @@
-/* import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import rickAndMortyApi from "../api/rickAndMortyApi";
 import ListItem from "../components/listComponents/ListItem";
 import ListItemDelete from "../components/listComponents/ListItemDelete";
 import ListItemSeperator from "../components/listComponents/ListItemSeperator";
+import Sprite from "../components/Sprite";
+import useApi from "../hooks/useApi";
+import { AllCharacter } from "../types/AllCharacters";
 
 type Props = {
-  //pokemonList: IPokemon[];
-  loading: boolean;
   refreshList?: () => void;
   deleteItem: (id: number) => void;
 };
 
-export default function ListScreen({
-  loading,
-  refreshList,
-  deleteItem,
-}: Props) {
+export default function ListScreen({ refreshList, deleteItem }: Props) {
+  const {
+    data: characters,
+    loading,
+    error,
+    request: getAllCharacters,
+  } = useApi<AllCharacter>(rickAndMortyApi.getAllCharacters);
+
+  useEffect(() => {
+    getAllCharacters();
+  }, []);
+
   return (
-    <FlatList
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => {
-        <ListItem
-          title={item.name}
-          subtitle={item.types[0].type.name}
-          imageUri={item.sprites.front_default}
-          renderRightActions={() => (
-            <ListItemDelete onPress={() => deleteItem(item.id)} />
-          )}
-        />;
-      }}
-      ItemSeparatorComponent={ListItemSeperator}
-      refreshing={loading}
-      onRefresh={refreshList}
-    />
+    <SafeAreaView>
+      <FlatList
+        data={characters?.results}
+        keyExtractor={(nameobject) => nameobject.id.toString()}
+        renderItem={({ item }) => (
+          <ListItem
+            id={item.id}
+            name={item.name}
+            species={item.species!}
+            image={item.image}
+            renderRightActions={() => (
+              <ListItemDelete onPress={() => deleteItem(item.id)} />
+            )}
+          />
+        )}
+        ItemSeparatorComponent={() => <ListItemSeperator />}
+        refreshing={loading}
+        onRefresh={refreshList}
+      />
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {},
-});
- */
+const styles = StyleSheet.create({});

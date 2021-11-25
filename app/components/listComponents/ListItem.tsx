@@ -1,19 +1,49 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { Animated, StyleSheet, Text, View } from "react-native";
 
+import { Swipeable } from "react-native-gesture-handler";
 import colors from "../../config/colors";
-import { Character } from "../../types/Character";
+import Sprite from "../Sprite";
 
-type Props = { item: Character };
+type Props = {
+  renderRightActions?: (
+    progressAnimatedValue: Animated.AnimatedInterpolation,
+    dragAnimatedValue: Animated.AnimatedInterpolation
+  ) => React.ReactNode;
+  name: string;
+  id: number;
+  species: string;
+  image: string;
+};
 
-export default function ListItem({ item }: Props) {
+export default function ListItem({
+  name,
+  id,
+  species,
+  image,
+  renderRightActions,
+}: Props) {
   return (
-    <Text style={styles.item}>
-      {`Hva er greia til ${item?.name ?? "unknown"}? <= Insert here`}
-    </Text>
+    <Swipeable renderRightActions={renderRightActions}>
+      <View style={[styles.row, styles.container]}>
+        {image && <Sprite uri={image} size={40} />}
+        <View>
+          <Text style={[styles.text, styles.title]}>{name} </Text>
+          <Text style={styles.text}>{species}</Text>
+        </View>
+      </View>
+    </Swipeable>
   );
 }
 
 const styles = StyleSheet.create({
-  item: { color: colors.gray, fontSize: 16 },
+  row: { flexDirection: "row" },
+  container: { margin: 10 },
+  title: { fontWeight: "600" },
+  text: {
+    color: colors.gray,
+    textTransform: "capitalize",
+    marginLeft: 10,
+    fontSize: 16,
+  },
 });
