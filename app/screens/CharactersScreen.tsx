@@ -1,32 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from "react-native";
 import rickAndMortyApi from "../api/rickAndMortyApi";
-import ListItem from "../components/listComponents/ListItem";
-import Sprite from "../components/Sprite";
-import colors from "../config/colors";
+import CharacterContainer from "../components/characterComponents/CharacterContainer";
+import ErrorHandler from "../components/ErrorHandler";
+import useApi from "../hooks/useApi";
 import { Character } from "../types/Character";
 
 type Props = { characterId: number };
 
 export default function CharactersScreen({ characterId }: Props) {
-  const [character, setCharacter] = useState<Character>();
-
-  async function getCharacter() {
-    const character = await rickAndMortyApi.getCharacter(characterId);
-    setCharacter(character);
-  }
+  const {
+    data: character,
+    loading,
+    error,
+    request: getCharacter,
+  } = useApi<Character>(rickAndMortyApi.getCharacter);
 
   useEffect(() => {
-    getCharacter();
+    getCharacter(characterId);
   }, [characterId]);
 
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={[styles.id, styles.text]}>ID: {character?.id}</Text>
-        <Sprite uri={character!.image} />
-        <Text style={styles.name}>Name: </Text>
-        <ListItem item={character?.name} />
+        <ActivityIndicator animating={loading} size="large" />
+        {error && <ErrorHandler onPress={() => getCharacter(characterId)} />}
+        {!error && !loading && <CharacterContainer character={character!} />}
       </View>
     </SafeAreaView>
   );
@@ -34,7 +38,4 @@ export default function CharactersScreen({ characterId }: Props) {
 
 const styles = StyleSheet.create({
   container: { padding: 20, alignItems: "center" },
-  text: { color: colors.gray },
-  id: { marginBottom: 20 },
-  name: { fontSize: 24, textTransform: "capitalize", marginBottom: 8 },
 });

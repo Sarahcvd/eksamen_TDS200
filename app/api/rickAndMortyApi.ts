@@ -1,32 +1,35 @@
 import axios from "axios";
 import { Character } from "../types/Character";
+import { Episodes } from "../types/Episodes";
+import { Location } from "../types/Location";
 
 axios.defaults.baseURL = "https://rickandmortyapi.com/api/";
 
 const getCharacter = async (characterId: number) => {
   try {
     const response = await axios.get<Character>(`character/${characterId}`);
+    if (characterId === 4) throw "";
     return response.data;
   } catch (error) {
-    console.log("Feil ved henting av: " + error);
+    throw "Feil ved henting av: " + error;
   }
 };
 
 const getLocation = async (locationId: number) => {
   try {
-    const response = await axios.get(`location/${locationId}`);
+    const response = await axios.get<Location>(`location/${locationId}`);
     return response.data;
   } catch (error) {
-    console.log("Feil ved henting av: " + error);
+    throw "Feil ved henting av: " + error;
   }
 };
 
 const getEpisode = async (episodeId: number) => {
   try {
-    const response = await axios.get(`episode/${episodeId}`);
+    const response = await axios.get<Episodes>(`episode/${episodeId}`);
     return response.data;
   } catch (error) {
-    console.log("Feil ved henting av: " + error);
+    throw "Feil ved henting av: " + error;
   }
 };
 

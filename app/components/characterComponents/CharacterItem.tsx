@@ -4,12 +4,12 @@ import { StyleSheet, Text } from "react-native";
 import colors from "../../config/colors";
 import { Character } from "../../types/Character";
 
-type Props = { item: Character };
+type Props = { character: Character };
 
-export default function ListItem({ item }: Props) {
+export default function CharacterItem({ character: item }: Props) {
   return (
     <Text style={styles.item}>
-      {`Hva er greia til ${item?.name ?? "unknown"}? <= Insert here`}
+      {`Hva er greia til ${item?.name ?? "unknown"}? `}
     </Text>
   );
 }
