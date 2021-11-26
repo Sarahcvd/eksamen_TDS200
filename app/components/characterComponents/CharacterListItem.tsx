@@ -16,7 +16,7 @@ type Props = {
   image: string;
 };
 
-export default function ListItem({
+export default function CharacterListItem({
   name,
   id,
   species,
