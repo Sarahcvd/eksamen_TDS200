@@ -8,7 +8,7 @@ type Props = {
   name: string;
 };
 
-const GoToFeedButton = ({ characterId, name }: Props) => {
+const GoToDetailsButton = ({ characterId, name }: Props) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <Button
@@ -23,4 +23,4 @@ const GoToFeedButton = ({ characterId, name }: Props) => {
   );
 };
 
-export default GoToFeedButton;
+export default GoToDetailsButton;

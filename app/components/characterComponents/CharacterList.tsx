@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
-import rickAndMortyApi from "../api/rickAndMortyApi";
-import CharacterListItem from "../components/characterComponents/CharacterListItem";
-import ListItemDelete from "../components/listComponents/ListItemDelete";
-import ListItemSeperator from "../components/listComponents/ListItemSeperator";
-import GoToFeedButton from "../components/navigators/GoToFeedButton";
-import useApi from "../hooks/useApi";
-import { AllCharacter } from "../types/AllCharacters";
+import rickAndMortyApi from "../../api/rickAndMortyApi";
+import CharacterListItem from "./CharacterListItem";
+import ListItemDelete from "../listComponents/ListItemDelete";
+import ListItemSeperator from "../listComponents/ListItemSeperator";
+import useApi from "../../hooks/useApi";
+import { AllCharacter } from "../../types/AllCharacters";
 
 type Props = {
   refreshList?: () => void;
 };
 
-export default function CharacterListScreen({ refreshList }: Props) {
+export default function CharacterList({ refreshList }: Props) {
   const {
     data: characters,
     loading,
@@ -45,7 +44,6 @@ export default function CharacterListScreen({ refreshList }: Props) {
                 <ListItemDelete onPress={() => deleteCharacter(item.id)} />
               )}
             />
-            <GoToFeedButton characterId={item.id} name={item.name} />
           </View>
         )}
         ItemSeparatorComponent={() => <ListItemSeperator />}

@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import CharacterListScreen from "./app/screens/CharacterListScreen";
+import CharacterList from "./app/components/characterComponents/CharacterList";
 import { RootStackParamList } from "./app/types/RootStackParamList";
 import { DetailsScreen } from "./app/screens/DetailsScreen";
 
@@ -18,7 +18,7 @@ export default function App() {
       >
         <Stack.Screen
           name="CharacterList"
-          component={CharacterListScreen}
+          component={CharacterList}
           options={{ title: "Characters" }}
         />
         <Stack.Screen

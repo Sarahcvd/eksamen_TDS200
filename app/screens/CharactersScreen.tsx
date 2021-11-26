@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import rickAndMortyApi from "../api/rickAndMortyApi";
-import CharacterContainer from "../components/characterComponents/CharacterContainer";
+import CharacterDetails from "../components/characterComponents/CharacterDetails";
 import ErrorHandler from "../components/ErrorHandler";
 import useApi from "../hooks/useApi";
 import { Character } from "../types/Character";
@@ -30,7 +30,7 @@ export default function CharactersScreen({ characterId }: Props) {
       <View style={styles.container}>
         <ActivityIndicator animating={loading} size="large" />
         {error && <ErrorHandler onPress={() => getCharacter(characterId)} />}
-        {!error && !loading && <CharacterContainer character={character!} />}
+        {!error && !loading && <CharacterDetails character={character!} />}
       </View>
     </SafeAreaView>
   );
