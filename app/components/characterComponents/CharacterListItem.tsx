@@ -1,6 +1,5 @@
 import React from "react";
 import { Animated, StyleSheet, Text, View } from "react-native";
-
 import { Swipeable } from "react-native-gesture-handler";
 import colors from "../../config/colors";
 import GoToDetailsButton from "../navigators/GoToDetailsButton";

@@ -4,29 +4,13 @@ import React from "react";
 import CharacterList from "./app/components/characterComponents/CharacterList";
 import { RootStackParamList } from "./app/types/RootStackParamList";
 import { DetailsScreen } from "./app/screens/DetailsScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import TabNavigation from "./app/components/navigators/TabNavigation";
 
 export default function App() {
-  const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="CharacterList"
-        screenOptions={{
-          headerStyle: { backgroundColor: "maroon" },
-          headerTintColor: "white",
-        }}
-      >
-        <Stack.Screen
-          name="CharacterList"
-          component={CharacterList}
-          options={{ title: "Characters" }}
-        />
-        <Stack.Screen
-          name="CharacterDetails"
-          component={DetailsScreen}
-          options={({ route }) => ({ title: route.params.name })}
-        />
-      </Stack.Navigator>
+      <TabNavigation />
     </NavigationContainer>
   );
 }

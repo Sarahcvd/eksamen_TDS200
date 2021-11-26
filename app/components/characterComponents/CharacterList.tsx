@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, View, Text } from "react-native";
 import rickAndMortyApi from "../../api/rickAndMortyApi";
 import CharacterListItem from "./CharacterListItem";
 import ListItemDelete from "../listComponents/ListItemDelete";
 import ListItemSeperator from "../listComponents/ListItemSeperator";
 import useApi from "../../hooks/useApi";
-import { AllCharacter } from "../../types/AllCharacters";
+import { AllCharacters } from "../../types/AllCharacters";
 
 type Props = {
   refreshList?: () => void;
@@ -17,9 +17,9 @@ export default function CharacterList({ refreshList }: Props) {
     loading,
     error,
     request: getAllCharacters,
-  } = useApi<AllCharacter>(rickAndMortyApi.getAllCharacters);
+  } = useApi<AllCharacters>(rickAndMortyApi.getAllCharacters);
 
-  const { request: deleteCharacter } = useApi<AllCharacter>(
+  const { request: deleteCharacter } = useApi<AllCharacters>(
     rickAndMortyApi.deleteCharacter
   );
 
@@ -33,23 +33,22 @@ export default function CharacterList({ refreshList }: Props) {
         data={characters?.results}
         keyExtractor={(nameobject) => nameobject.id.toString()}
         renderItem={({ item }) => (
-          <View>
-            <CharacterListItem
-              id={item.id}
-              name={item.name}
-              species={item.species!}
-              image={item.image}
-              /* Jeg tror ikke denne fungerer */
-              renderRightActions={() => (
-                <ListItemDelete onPress={() => deleteCharacter(item.id)} />
-              )}
-            />
-          </View>
+          <CharacterListItem
+            id={item.id}
+            name={item.name}
+            species={item.species!}
+            image={item.image}
+            /* Jeg tror ikke denne fungerer */
+            renderRightActions={() => (
+              <ListItemDelete onPress={() => deleteCharacter(item.id)} />
+            )}
+          />
         )}
         ItemSeparatorComponent={() => <ListItemSeperator />}
         refreshing={loading}
         onRefresh={refreshList}
       />
+      <Text>Hello</Text>
     </SafeAreaView>
   );
 }

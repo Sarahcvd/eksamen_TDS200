@@ -1,4 +1,8 @@
-export type AllCharacter = {
+export type AllCharacters = {
+  info: {
+    next: string | null;
+    prev: string | null;
+  };
   results: [
     {
       id: number;
