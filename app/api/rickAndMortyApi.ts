@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AllCharacter } from "../types/AllCharacters";
 import { Character } from "../types/Character";
 import { Episodes } from "../types/Episodes";
 import { Location } from "../types/Location";
@@ -7,7 +8,7 @@ axios.defaults.baseURL = "https://rickandmortyapi.com/api/";
 
 const getAllCharacters = async () => {
   try {
-    const response = await axios.get<Character>(`character/`);
+    const response = await axios.get<AllCharacter>(`character/`);
     return response.data;
   } catch (error) {
     throw "Feil ved henting av: " + error;
@@ -25,8 +26,10 @@ const getCharacter = async (characterId: number) => {
 };
 
 // FIKS DETTE
-const deleteCharacter = (id: number) => {
-  return character?.filer((c) => c.id != id);
+const deleteCharacter = async (id: number) => {
+  const response = await axios.get<AllCharacter>(`character/`);
+
+  return response.data.results.filter((c) => c.id != id);
 };
 
 const getLocation = async (locationId: number) => {

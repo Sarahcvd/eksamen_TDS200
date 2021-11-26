@@ -10,16 +10,19 @@ import { AllCharacter } from "../types/AllCharacters";
 
 type Props = {
   refreshList?: () => void;
-  deleteItem: (id: number) => void;
 };
 
-export default function ListScreen({ refreshList, deleteItem }: Props) {
+export default function ListScreen({ refreshList }: Props) {
   const {
     data: characters,
     loading,
     error,
     request: getAllCharacters,
   } = useApi<AllCharacter>(rickAndMortyApi.getAllCharacters);
+
+  const { request: deleteCharacter } = useApi<AllCharacter>(
+    rickAndMortyApi.deleteCharacter
+  );
 
   useEffect(() => {
     getAllCharacters();
@@ -36,8 +39,9 @@ export default function ListScreen({ refreshList, deleteItem }: Props) {
             name={item.name}
             species={item.species!}
             image={item.image}
+            /* Jeg tror ikke denne fungererg */
             renderRightActions={() => (
-              <ListItemDelete onPress={() => deleteItem(item.id)} />
+              <ListItemDelete onPress={() => deleteCharacter(item.id)} />
             )}
           />
         )}
