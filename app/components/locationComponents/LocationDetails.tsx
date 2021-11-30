@@ -8,7 +8,7 @@ export default function LocationDetails({ location }: Props) {
   return (
     <View style={styles.container}>
       <Text>ID: {location.id}</Text>
-      <Text>{location.name}</Text>
+      <Text>Name: {location.name}</Text>
     </View>
   );
 }

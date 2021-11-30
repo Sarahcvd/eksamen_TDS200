@@ -4,18 +4,18 @@ import { Button } from "react-native";
 import { RootStackParamList } from "../../types/RootStackParamList";
 
 type Props = {
-  characterId: number;
+  locationId: number;
   name: string;
 };
 
-const GoToDetailsButton = ({ characterId, name }: Props) => {
+const LocationDetailsButton = ({ locationId, name }: Props) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <Button
       title="Read more"
       onPress={() =>
-        navigation.navigate("CharacterDetails", {
-          characterId: characterId,
+        navigation.navigate("LocationDetails", {
+          locationId: locationId,
           name: name,
         })
       }
@@ -23,4 +23,4 @@ const GoToDetailsButton = ({ characterId, name }: Props) => {
   );
 };
 
-export default GoToDetailsButton;
+export default LocationDetailsButton;

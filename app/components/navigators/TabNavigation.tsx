@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { View, Text } from "react-native";
 import { RootStackParamList } from "../../types/RootStackParamList";
-import CharacterNavigation from "./CharacterNavigation";
+import Navigation from "./Navigation";
 import { FontAwesome5 } from "@expo/vector-icons";
 import LocationList from "../locationComponents/LocationList";
 
@@ -20,7 +20,7 @@ const TabNavigation = () => {
     >
       <Tab.Screen
         name="Prev"
-        component={CharacterNavigation}
+        component={Navigation}
         options={{
           tabBarIcon: ({ size, color }) => (
             <FontAwesome5 name="list" size={size} color={color} />
@@ -38,7 +38,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Next"
-        component={CharacterNavigation}
+        component={Navigation}
         options={{
           tabBarIcon: ({ size, color }) => (
             <FontAwesome5 name="cog" size={size} color={color} />

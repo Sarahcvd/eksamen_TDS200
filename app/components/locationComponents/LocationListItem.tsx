@@ -5,18 +5,23 @@
   dimension?: string;
 };
  */
+import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import colors from "../../config/colors";
+import { RootStackParamList } from "../../types/RootStackParamList";
+import LocationDetailsButton from "../navigators/LocationDetailsButton";
 
 type Props = {
   id: number;
   name: string;
   type?: string;
-  dimention?: string;
+  dimension?: string;
 };
 
-export default function LocationListItem({ id, name, type, dimention }: Props) {
+export default function LocationListItem({ id, name, type, dimension }: Props) {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       <View
@@ -26,9 +31,11 @@ export default function LocationListItem({ id, name, type, dimention }: Props) {
       >
         <Text style={[styles.text, styles.title]}>{name} </Text>
         <Text style={styles.text}>{type}</Text>
-        <Text style={styles.text}>{dimention}</Text>
+        <Text style={styles.text}>{dimension}</Text>
       </View>
-      <View style={styles.button}></View>
+      <View style={styles.button}>
+        <LocationDetailsButton locationId={id} name={name} />
+      </View>
     </View>
   );
 }

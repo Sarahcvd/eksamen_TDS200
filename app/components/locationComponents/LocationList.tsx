@@ -28,7 +28,12 @@ export default function LocationList({}: Props) {
         data={locations?.results}
         keyExtractor={(nameobject) => nameobject.id.toString()}
         renderItem={({ item }) => (
-          <LocationListItem id={item.id} name={item.name} />
+          <LocationListItem
+            id={item.id}
+            name={item.name}
+            type={item.type}
+            dimension={item.dimension}
+          />
         )}
         ItemSeparatorComponent={() => <ListItemSeperator />}
         refreshing={loading}
