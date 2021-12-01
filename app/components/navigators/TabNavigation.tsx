@@ -15,7 +15,6 @@ const TabNavigation = () => {
         tabBarActiveTintColor: "white",
         tabBarInactiveBackgroundColor: "lightgrey",
         tabBarInactiveTintColor: "teal",
-        headerShown: false,
       }}
     >
       <Tab.Screen

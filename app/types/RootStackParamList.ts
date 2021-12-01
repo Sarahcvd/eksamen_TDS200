@@ -5,5 +5,5 @@ export type RootStackParamList = {
   Next: undefined;
   Locations: undefined;
   LocationList: undefined;
-  LocationDetails: { locationId: number; locationUrl?: string; name?: string };
+  LocationDetails: { locationId: number; name?: string; locationUrl?: string };
 };

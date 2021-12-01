@@ -6,8 +6,6 @@ import { Location } from "../../types/Location";
 type Props = { location: Location };
 
 export default function LocationDetails({ location }: Props) {
-  console.log("Details page " + location.name);
-
   return (
     <>
       <Text style={[styles.id, styles.text]}>ID: {location.id}</Text>

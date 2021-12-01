@@ -22,11 +22,11 @@ export default function LocationList({ refreshList }: Props) {
 
   useEffect(() => {
     getAllLocations();
-    console.log("list page: " + locations);
   }, []);
 
   return (
     <SafeAreaView>
+      <Text>{locations.info.pages}</Text>
       <FlatList
         data={locations?.results}
         keyExtractor={(nameobject) => nameobject.id.toString()}

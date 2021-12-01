@@ -12,7 +12,6 @@ const Navigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
-      initialRouteName="CharacterList"
       screenOptions={{
         headerStyle: { backgroundColor: "maroon" },
         headerTintColor: "white",
@@ -31,12 +30,15 @@ const Navigation = () => {
       <Stack.Screen
         name="LocationList"
         component={LocationList}
-        options={{ title: "Characters" }}
+        options={{ title: "Locations" }}
       />
       <Stack.Screen
         name="LocationDetails"
         component={LocationDetailsScreen}
-        options={({ route }) => ({ title: route.params.locationUrl })}
+        options={({ route }) => ({
+          title: route.params.name,
+          presentation: "modal",
+        })}
       />
     </Stack.Navigator>
   );

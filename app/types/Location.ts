@@ -3,4 +3,5 @@ export type Location = {
   name: string;
   type?: string;
   dimension?: string;
+  residents: string[];
 };
