@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { View, Text } from "react-native";
-import { DetailsScreen } from "../../screens/DetailsScreen";
+import { CharacterDetailsScreen } from "../../screens/CharacterDetailsScreen";
+import { LocationDetailsScreen } from "../../screens/LocationDetailsScreen";
 import LocationScreen from "../../screens/LocationScreen";
 import { RootStackParamList } from "../../types/RootStackParamList";
 import CharacterList from "../characterComponents/CharacterList";
+import LocationList from "../locationComponents/LocationList";
 
 const Navigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -23,12 +25,17 @@ const Navigation = () => {
       />
       <Stack.Screen
         name="CharacterDetails"
-        component={DetailsScreen}
+        component={CharacterDetailsScreen}
         options={({ route }) => ({ title: route.params.name })}
       />
       <Stack.Screen
+        name="LocationList"
+        component={LocationList}
+        options={{ title: "Characters" }}
+      />
+      <Stack.Screen
         name="LocationDetails"
-        component={LocationScreen}
+        component={LocationDetailsScreen}
         options={({ route }) => ({ title: route.params.locationUrl })}
       />
     </Stack.Navigator>

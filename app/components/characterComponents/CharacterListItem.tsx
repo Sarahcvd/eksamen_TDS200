@@ -27,11 +27,7 @@ export default function CharacterListItem({
     <Swipeable renderRightActions={renderRightActions}>
       <View style={[styles.row, styles.container]}>
         {image && <Sprite uri={image} size={40} />}
-        <View
-          style={{
-            flex: 1,
-          }}
-        >
+        <View style={{ flex: 1 }}>
           <Text style={[styles.text, styles.title]}>{name} </Text>
           <Text style={styles.text}>{species}</Text>
         </View>
@@ -52,9 +48,10 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     marginLeft: 10,
     fontSize: 16,
-    width: 120,
     height: 25,
-    overflow: "hidden",
   },
-  button: { flex: 2, alignItems: "flex-end", justifyContent: "space-around" },
+  button: {
+    alignItems: "flex-end",
+    justifyContent: "space-around",
+  },
 });

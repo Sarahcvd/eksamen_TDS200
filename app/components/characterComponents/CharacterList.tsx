@@ -36,7 +36,7 @@ export default function CharacterList({ refreshList }: Props) {
           <CharacterListItem
             id={item.id}
             name={item.name}
-            species={item.species!}
+            species={item.species}
             image={item.image}
             /* Jeg tror ikke denne fungerer */
             renderRightActions={() => (
@@ -48,7 +48,6 @@ export default function CharacterList({ refreshList }: Props) {
         refreshing={loading}
         onRefresh={refreshList}
       />
-      <Text>Hello</Text>
     </SafeAreaView>
   );
 }

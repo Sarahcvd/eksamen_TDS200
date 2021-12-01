@@ -8,9 +8,11 @@ import { AllLocations } from "../../types/AllLocations";
 import ListItemSeperator from "../listComponents/ListItemSeperator";
 import LocationListItem from "./LocationListItem";
 
-type Props = {};
+type Props = {
+  refreshList?: () => void;
+};
 
-export default function LocationList({}: Props) {
+export default function LocationList({ refreshList }: Props) {
   const {
     data: locations,
     loading,
@@ -20,6 +22,7 @@ export default function LocationList({}: Props) {
 
   useEffect(() => {
     getAllLocations();
+    console.log("list page: " + locations);
   }, []);
 
   return (
@@ -37,6 +40,7 @@ export default function LocationList({}: Props) {
         )}
         ItemSeparatorComponent={() => <ListItemSeperator />}
         refreshing={loading}
+        onRefresh={refreshList}
       />
     </SafeAreaView>
   );

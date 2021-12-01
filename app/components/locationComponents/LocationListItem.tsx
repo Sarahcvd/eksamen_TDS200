@@ -1,10 +1,3 @@
-/* export type Location = {
-  id: number;
-  name: string;
-  type?: string;
-  dimension?: string;
-};
- */
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
@@ -23,14 +16,13 @@ export default function LocationListItem({ id, name, type, dimension }: Props) {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.row, styles.container]}>
       <View
         style={{
           flex: 1,
         }}
       >
         <Text style={[styles.text, styles.title]}>{name} </Text>
-        <Text style={styles.text}>{type}</Text>
         <Text style={styles.text}>{dimension}</Text>
       </View>
       <View style={styles.button}>
@@ -49,9 +41,10 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     marginLeft: 10,
     fontSize: 16,
-    width: 120,
     height: 25,
-    overflow: "hidden",
   },
-  button: { flex: 2, alignItems: "flex-end", justifyContent: "space-around" },
+  button: {
+    alignItems: "flex-end",
+    justifyContent: "space-around",
+  },
 });

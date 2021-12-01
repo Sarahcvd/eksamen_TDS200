@@ -1,5 +1,6 @@
 import axios from "axios";
 import { AllCharacters } from "../types/AllCharacters";
+import { AllLocations } from "../types/AllLocations";
 import { Character } from "../types/Character";
 import { Episodes } from "../types/Episodes";
 import { Location } from "../types/Location";
@@ -28,8 +29,16 @@ const getCharacter = async (characterId: number) => {
 // FIKS DETTE
 const deleteCharacter = async (id: number) => {
   const response = await axios.get<AllCharacters>(`character/`);
-
   return response.data.results.filter((c) => c.id != id);
+};
+
+const getAllLocations = async () => {
+  try {
+    const response = await axios.get<AllLocations>("location/");
+    return response.data;
+  } catch (error) {
+    throw "Feil ved henting av: " + error;
+  }
 };
 
 const getLocation = async (locationId: number) => {
@@ -39,11 +48,6 @@ const getLocation = async (locationId: number) => {
   } catch (error) {
     throw "Feil ved henting av: " + error;
   }
-};
-
-const getAllLocations = async (id: number) => {
-  const response = await axios.get("location");
-  return response.data;
 };
 
 const getEpisode = async (episodeId: number) => {
