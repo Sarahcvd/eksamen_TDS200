@@ -17,11 +17,7 @@ export default function LocationListItem({ id, name, type, dimension }: Props) {
 
   return (
     <View style={[styles.row, styles.container]}>
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
+      <View style={{ flex: 1 }}>
         <Text style={[styles.text, styles.title]}>{name} </Text>
         <Text style={styles.text}>{dimension}</Text>
       </View>
