@@ -1,7 +1,7 @@
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
 import { Button } from "react-native";
-import { RootStackParamList } from "../../types/RootStackParamList";
+import { RootStackParamList } from "../types/RootStackParamList";
 
 type Props = {
   characterId: number;

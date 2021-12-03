@@ -2,7 +2,7 @@ import React from "react";
 import { Animated, StyleSheet, Text, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import colors from "../../config/colors";
-import CharacterDetailsButton from "../navigators/CharacterDetailsButton";
+import CharacterDetailsButton from "../CharacterDetailsButton";
 import Sprite from "../Sprite";
 
 type Props = {

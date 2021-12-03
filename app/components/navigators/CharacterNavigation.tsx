@@ -3,14 +3,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CharacterDetailsScreen } from "../../screens/CharacterDetailsScreen";
 import { RootStackParamList } from "../../types/RootStackParamList";
 import CharacterList from "../characterComponents/CharacterList";
+import colors from "../../config/colors";
 
 const CharacterNavigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "maroon" },
-        headerTintColor: "white",
+        headerStyle: { backgroundColor: colors.blue },
+        headerTintColor: colors.dark,
       }}
     >
       <Stack.Screen

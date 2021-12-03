@@ -3,7 +3,7 @@ import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import colors from "../../config/colors";
 import { RootStackParamList } from "../../types/RootStackParamList";
-import LocationDetailsButton from "../navigators/LocationDetailsButton";
+import LocationDetailsButton from "../LocationDetailsButton";
 
 type Props = {
   id: number;

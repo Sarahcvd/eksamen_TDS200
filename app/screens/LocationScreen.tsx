@@ -20,13 +20,11 @@ export default function LocationScreen({ locationId }: Props) {
     getLocation(locationId);
   }, [locationId]);
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <ActivityIndicator animating={loading} size="large" />
-        {error && <ErrorHandler onPress={() => getLocation(locationId)} />}
-        {!error && !loading && <LocationDetails location={location!} />}
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <ActivityIndicator animating={loading} size="large" />
+      {error && <ErrorHandler onPress={() => getLocation(locationId)} />}
+      {!error && !loading && <LocationDetails location={location!} />}
+    </View>
   );
 }
 

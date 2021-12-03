@@ -3,14 +3,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LocationDetailsScreen } from "../../screens/LocationDetailsScreen";
 import { RootStackParamList } from "../../types/RootStackParamList";
 import LocationList from "../locationComponents/LocationList";
+import colors from "../../config/colors";
 
 const LocationNavigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "maroon" },
-        headerTintColor: "white",
+        headerStyle: { backgroundColor: colors.blue },
+        headerTintColor: colors.dark,
       }}
     >
       <Stack.Screen

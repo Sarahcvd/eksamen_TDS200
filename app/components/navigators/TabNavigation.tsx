@@ -1,21 +1,26 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import { View, Text } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { RootStackParamList } from "../../types/RootStackParamList";
 import CharacterNavigation from "./CharacterNavigation";
 import { FontAwesome5 } from "@expo/vector-icons";
-import LocationList from "../locationComponents/LocationList";
 import LocationNavigation from "./LocationNavigation";
+import { RootBottomTabPropTypes } from "../../types/RootBottomTabPropTypes";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootLoginParamList } from "../../types/RootLoginParamList";
+import SettingsScreen from "../../screens/SettingsScreen";
+import colors from "../../config/colors";
 
-const TabNavigation = () => {
-  const Tab = createBottomTabNavigator<RootStackParamList>();
+const TabNavigation = ({
+  route,
+}: NativeStackScreenProps<RootLoginParamList, "Authenticated">) => {
+  const Tab = createBottomTabNavigator<RootBottomTabPropTypes>();
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveBackgroundColor: "teal",
-        tabBarActiveTintColor: "white",
-        tabBarInactiveBackgroundColor: "lightgrey",
-        tabBarInactiveTintColor: "teal",
+        tabBarActiveBackgroundColor: colors.blue,
+        tabBarActiveTintColor: colors.dark,
+        tabBarInactiveBackgroundColor: colors.dark,
+        tabBarInactiveTintColor: colors.blue,
         headerShown: false,
       }}
     >
@@ -37,15 +42,19 @@ const TabNavigation = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Next"
-        component={Navigation}
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <FontAwesome5 name="cog" size={size} color={color} />
+            <FontAwesome5 name="user-cog" size={size} color={color} />
           ),
         }}
-      /> */}
+        initialParams={{
+          username: route.params.username,
+          imageUri: route.params.imageUri,
+        }}
+      />
     </Tab.Navigator>
   );
 };

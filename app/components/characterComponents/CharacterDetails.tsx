@@ -16,24 +16,19 @@ export default function CharacterDetails({ character }: Props) {
       <Text style={[styles.id, styles.text]}>ID: {character.id}</Text>
       <Sprite uri={character.image} />
       <Text style={styles.name}>{character.name}</Text>
-      <Text style={styles.item}>
-        {`Hva er greia til ${character.name ?? "unknown"}? `}
-      </Text>
-      <Text>Species: {character.species}</Text>
+      <Text style={styles.item}>Species: {character.species}</Text>
       {character.origin && (
-        <Text>Originates from: {character.origin.name}</Text>
-      )}
-      {/* {character.origin && (
         <TouchableHighlight
           onPress={() =>
             navigation.navigate("LocationDetails", {
-              locationUrl: character.origin!.url,
+              locationId: character.id,
+              locationUrl: character.origin?.url,
             })
           }
         >
           <Text>Originates from: {character.origin.name}</Text>
         </TouchableHighlight>
-      )} */}
+      )}
     </>
   );
 }
@@ -41,6 +36,6 @@ export default function CharacterDetails({ character }: Props) {
 const styles = StyleSheet.create({
   text: { color: colors.gray },
   id: { marginBottom: 20 },
-  item: { color: colors.gray, fontSize: 16 },
+  item: { color: colors.black, fontSize: 18, marginBottom: 5 },
   name: { fontSize: 24, textTransform: "capitalize", marginBottom: 8 },
 });
