@@ -26,7 +26,7 @@ export default function SettingsScreen({
             .getParent<NavigationProp<RootLoginParamList>>()
             .navigate("Login")
         }
-        type="blue"
+        type="green"
       />
     </View>
   );

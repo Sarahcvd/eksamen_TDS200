@@ -24,16 +24,17 @@ export default function User({ username, imageUri }: Props) {
     username: {
       color: colors.dark,
       textTransform: "capitalize",
-      fontSize: 20,
+      fontSize: 30,
+      marginBottom: 80,
     },
   });
 
   return (
     <View style={styles.container}>
+      <Text style={styles.username}>Hello {username}!</Text>
       <View style={styles.imageContainer}>
         <Image source={{ uri: imageUri, width: size, height: size }} />
       </View>
-      <Text style={styles.username}>{username}</Text>
     </View>
   );
 }

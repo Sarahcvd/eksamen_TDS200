@@ -17,10 +17,10 @@ const TabNavigation = ({
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveBackgroundColor: colors.blue,
+        tabBarActiveBackgroundColor: colors.green,
         tabBarActiveTintColor: colors.dark,
         tabBarInactiveBackgroundColor: colors.dark,
-        tabBarInactiveTintColor: colors.blue,
+        tabBarInactiveTintColor: colors.green,
         headerShown: false,
       }}
     >

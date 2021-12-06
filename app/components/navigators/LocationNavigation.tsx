@@ -10,7 +10,7 @@ const LocationNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: colors.blue },
+        headerStyle: { backgroundColor: colors.green },
         headerTintColor: colors.dark,
       }}
     >
