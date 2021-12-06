@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import colors from "../../config/colors";
 import { Location } from "../../types/Location";
 
@@ -15,6 +15,11 @@ export default function LocationDetails({ location }: Props) {
         This {location.type} resides in the "{location.dimension}" dimension
       </Text>
       <Text style={styles.item}>Residents:</Text>
+      <FlatList
+        data={location.residents}
+        keyExtractor={(item) => item}
+        renderItem={({ item }) => <Text>{item}</Text>}
+      />
     </>
   );
 }

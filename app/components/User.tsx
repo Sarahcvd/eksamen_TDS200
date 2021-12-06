@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, StyleSheet, View, Image, Dimensions } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  Dimensions,
+  Platform,
+} from "react-native";
 
 import colors from "../config/colors";
 
@@ -26,6 +33,7 @@ export default function User({ username, imageUri }: Props) {
       textTransform: "capitalize",
       fontSize: 30,
       marginBottom: 80,
+      fontFamily: Platform.OS == "android" ? "sans-serif" : "Helvetica Neue",
     },
   });
 

@@ -19,16 +19,12 @@ export default function CharacterList({ refreshList }: Props) {
     request: getAllCharacters,
   } = useApi<AllCharacters>(rickAndMortyApi.getAllCharacters);
 
-  const { request: deleteCharacter } = useApi<AllCharacters>(
-    rickAndMortyApi.deleteCharacter
-  );
-
   useEffect(() => {
     getAllCharacters();
   }, []);
 
   return (
-    <SafeAreaView>
+    <>
       <FlatList
         data={characters?.results}
         keyExtractor={(nameobject) => nameobject.id.toString()}
@@ -38,17 +34,13 @@ export default function CharacterList({ refreshList }: Props) {
             name={item.name}
             species={item.species}
             image={item.image}
-            /* Jeg tror ikke denne fungerer */
-            renderRightActions={() => (
-              <ListItemDelete onPress={() => deleteCharacter(item.id)} />
-            )}
           />
         )}
         ItemSeparatorComponent={() => <ListItemSeperator />}
         refreshing={loading}
         onRefresh={refreshList}
       />
-    </SafeAreaView>
+    </>
   );
 }
 

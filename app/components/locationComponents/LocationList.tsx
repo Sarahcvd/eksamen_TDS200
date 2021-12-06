@@ -25,7 +25,7 @@ export default function LocationList({ refreshList }: Props) {
   }, []);
 
   return (
-    <SafeAreaView>
+    <>
       <FlatList
         data={locations?.results}
         keyExtractor={(nameobject) => nameobject.id.toString()}
@@ -41,7 +41,7 @@ export default function LocationList({ refreshList }: Props) {
         refreshing={loading}
         onRefresh={refreshList}
       />
-    </SafeAreaView>
+    </>
   );
 }
 

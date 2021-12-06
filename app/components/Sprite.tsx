@@ -1,5 +1,11 @@
 import React from "react";
-import { Dimensions, Image, ImageSourcePropType, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ImageSourcePropType,
+  View,
+  StyleSheet,
+} from "react-native";
 import colors from "../config/colors";
 
 type Props = { uri: string; size?: number };
@@ -16,17 +22,17 @@ export default function Sprite({
   };
 
   return (
-    <View
-      style={{
-        borderColor: colors.gray,
-        borderWidth: 2,
-        borderRadius: width,
-        marginBottom: 8,
-        overflow: "hidden",
-        width: size,
-      }}
-    >
+    <View style={{ borderRadius: width, width: size, ...styles.image }}>
       <Image source={source} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    borderColor: colors.gray,
+    borderWidth: 2,
+    marginBottom: 8,
+    overflow: "hidden",
+  },
+});

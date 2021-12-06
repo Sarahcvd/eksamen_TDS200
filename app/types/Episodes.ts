@@ -1,6 +1,6 @@
 export type Episodes = {
   id: number;
   name: string;
-  episode: string;
+  episode?: string;
   characters?: string[];
 };

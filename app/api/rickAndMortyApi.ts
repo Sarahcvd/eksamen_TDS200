@@ -26,12 +26,6 @@ const getCharacter = async (characterId: number) => {
   }
 };
 
-// FIKS DETTE
-const deleteCharacter = async (id: number) => {
-  const response = await axios.get<AllCharacters>(`character/`);
-  return response.data.results.filter((c) => c.id != id);
-};
-
 const getAllLocations = async () => {
   try {
     const response = await axios.get<AllLocations>("location/");
@@ -50,9 +44,9 @@ const getLocation = async (locationId: number) => {
   }
 };
 
-const getEpisode = async (episodeId: number) => {
+const getEpisode = async (episodeUrl: string) => {
   try {
-    const response = await axios.get<Episodes>(`episode/${episodeId}`);
+    const response = await axios.get<Episodes>(episodeUrl);
     return response.data;
   } catch (error) {
     throw "Feil ved henting av: " + error;
@@ -64,6 +58,5 @@ export default {
   getLocation,
   getEpisode,
   getAllCharacters,
-  deleteCharacter,
   getAllLocations,
 };
