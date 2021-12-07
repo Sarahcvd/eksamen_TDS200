@@ -19,7 +19,7 @@ const CharacterDetailsButton = ({ characterId, name }: Props) => {
           name: name,
         })
       }
-    ></Button>
+    />
   );
 };
 

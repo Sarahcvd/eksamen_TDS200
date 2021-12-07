@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -21,23 +22,35 @@ type Props = {
 };
 
 export default function CharacterDetails({ character }: Props) {
-  const [loading, setLoading] = useState(false);
-  const [episodes, setEpisodes] = useState([{}]);
-
-  const { data: _episodes, request: getEpisode } = useApi<Episodes>(
+  const [loading, setLoading] = useState(true);
+  const [episodes, setEpisodes] = useState([{ name: "" }]);
+  /* const { data: episodes, request: getEpisode } = useApi<Episodes>(
     test.getEpisode
-  );
+  ); */
+  const getEpisode = async (episodeUrl: string) => {
+    try {
+      const response = await axios.get(episodeUrl);
+      console.log("Get episode" + response.data.name);
+      return response.data;
+    } catch (error) {
+      throw "Feil ved henting av: " + error;
+    }
+  };
+
+  const getAllEpisodes = async () => {
+    if (character) {
+      let episode_info = [];
+      for (let i in character.episode) {
+        episode_info.push(await getEpisode(character.episode[i]));
+      }
+      setEpisodes(episode_info);
+      console.log(episodes);
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
-    let episode_info = [];
-
-    for (let i in character.episode) {
-      // get episode og leg det i arrayet
-      console.log(character.episode[i]);
-      episode_info.push(getEpisode(character.episode[i]));
-    }
-    setEpisodes(episode_info);
+    getAllEpisodes();
     setLoading(false);
   }, []);
 
@@ -76,21 +89,27 @@ export default function CharacterDetails({ character }: Props) {
               Current location: {character.location?.name}
             </Text>
           </View>
+          {loading ? (
+            <ActivityIndicator
+              color="#005"
+              size="large"
+              style={styles.loader}
+            />
+          ) : (
+            <>
+              <Text style={styles.text}>Starring in episodes: </Text>
+              <FlatList
+                style={styles.episode_list}
+                data={episodes}
+                keyExtractor={(item) => item.name}
+                renderItem={({ item }) => (
+                  <Text style={styles.text}>{item.name}</Text>
+                )}
+              />
+            </>
+          )}
         </View>
       ) : null}
-      {loading ? (
-        <ActivityIndicator color="#005" size="large" style={styles.loader} />
-      ) : (
-        <>
-          <Text style={styles.text}>Starring in episodes: </Text>
-          <FlatList
-            style={styles.episode_list}
-            data={_episodes.name}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => <Text style={styles.text}>{item}</Text>}
-          />
-        </>
-      )}
     </SafeAreaView>
   );
 }

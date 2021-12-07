@@ -23,6 +23,14 @@ export default function CharacterList({ refreshList }: Props) {
     getAllCharacters();
   }, []);
 
+  /*  const loadMore = () => {
+    const refetchVariables = (fragmentVariables: any) => ({
+      ...fragmentVariables,
+      page: characters.info.next,
+    });
+    relay.refetch(refetchVariables, null);
+  }; */
+
   return (
     <>
       <FlatList
@@ -39,6 +47,7 @@ export default function CharacterList({ refreshList }: Props) {
         ItemSeparatorComponent={() => <ListItemSeperator />}
         refreshing={loading}
         onRefresh={refreshList}
+        //onEndReached={loadMore}
       />
     </>
   );
