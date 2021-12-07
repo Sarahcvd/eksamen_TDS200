@@ -9,6 +9,7 @@ import { AllCharacters } from "../../types/AllCharacters";
 import { Character } from "../../types/Character";
 import { TextInput } from "react-native-gesture-handler";
 import colors from "../../config/colors";
+import { SearchBar } from "react-native-elements";
 
 type Props = {
   refreshList?: () => void;
@@ -17,12 +18,14 @@ type Props = {
 export default function CharacterList({ refreshList }: Props) {
   const {
     data: characters,
+    filteredData: filteredCharacters,
+    setFilteredData: setFilteredCharacters,
     loading,
     error,
     request: getAllCharacters,
   } = useApi<Character>(rickAndMortyApi.getAllCharacters);
-  /* const [filteredArray, setFilteredArray] = useState([...characters]);
-  const [text, setText] = useState(""); */
+
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
     getAllCharacters();
@@ -42,35 +45,49 @@ export default function CharacterList({ refreshList }: Props) {
     }
   }; */
 
-  /* const handleSearch = (text: string) => {
-    const formattedText = text.toLocaleLowerCase();
-    const data = filteredArray.filter((name) => {});
-  }; */
+  const filterSearch: (text: string) => void = async (text: string) => {
+    if (text) {
+      const filteredData = await characters.filter((item: any) => {
+        const itemData = item.name ? item.name.toUpperCase() : "";
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
 
-  return (
-    <View>
-      <TextInput
-        style={styles.input}
-        placeholder="Filter characters"
-        onChangeText={(_text) => rickAndMortyApi.filterCharacters(_text)}
-      />
-      <FlatList
-        data={characters}
-        keyExtractor={(nameobject) => nameobject.id.toString()}
-        renderItem={({ item }) => (
-          <CharacterListItem
-            id={item.id}
-            name={item.name}
-            species={item.species}
-            image={item.image}
-          />
-        )}
-        ItemSeparatorComponent={() => <ListItemSeperator />}
-        refreshing={loading}
-        onRefresh={refreshList}
-      />
-    </View>
-  );
+      setFilteredCharacters(await filteredData);
+      setSearch(text);
+    } else {
+      setFilteredCharacters(await characters);
+      setSearch(text);
+    }
+
+    return (
+      <View>
+        <SearchBar
+          //style={styles.input}
+          searchIcon={{ size: 25 }}
+          onChangeText={(_text) => filterSearch(_text)}
+          onClear={() => filterSearch("")}
+          placeholder="Filter characters"
+          value={search}
+        />
+        <FlatList
+          data={filteredCharacters}
+          keyExtractor={(nameobject) => nameobject.id.toString()}
+          renderItem={({ item }) => (
+            <CharacterListItem
+              id={item.id}
+              name={item.name}
+              species={item.species}
+              image={item.image}
+            />
+          )}
+          ItemSeparatorComponent={() => <ListItemSeperator />}
+          refreshing={loading}
+          onRefresh={refreshList}
+        />
+      </View>
+    );
+  };
 }
 
 const styles = StyleSheet.create({

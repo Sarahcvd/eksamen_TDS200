@@ -6,7 +6,7 @@ type Props = { onPress: () => void };
 export default function ErrorHandler({ onPress }: Props) {
   return (
     <>
-      <Text>Error Error hitler</Text>
+      <Text>Error </Text>
       <Button title="Prøv igjen" onPress={onPress} />
     </>
   );

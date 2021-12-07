@@ -21,7 +21,7 @@ const getAllCharacters = async () => {
   }
 };
 
-const filterCharacters = async (text: string) => {
+/* const filterSearch: (text: string) => void = async (text: string) => {
   try {
     const response = await axios.get<Character>(
       `https://rickandmortyapi.com/api/character/?name=${text.toLocaleLowerCase()}`
@@ -30,7 +30,7 @@ const filterCharacters = async (text: string) => {
   } catch (error) {
     throw "Feil ved henting av: " + error;
   }
-};
+}; */
 
 const getCharacter = async (characterId: number) => {
   try {
@@ -88,5 +88,5 @@ export default {
   getAllCharacters,
   getAllLocations,
   getResidents,
-  filterCharacters,
+  //filterCharacters: filterSearch,
 };
