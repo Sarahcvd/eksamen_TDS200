@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   seperator: {
     width: "100%",
     height: 5,
-    backgroundColor: colors.dark,
+    backgroundColor: colors.blue,
     opacity: 0.2,
   },
 });

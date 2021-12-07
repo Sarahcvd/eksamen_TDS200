@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -10,9 +9,7 @@ import {
   View,
 } from "react-native";
 import rickAndMortyApi from "../../api/rickAndMortyApi";
-import test from "../../api/test";
 import colors from "../../config/colors";
-import useApi from "../../hooks/useApi";
 import { Character } from "../../types/Character";
 import { Episodes } from "../../types/Episodes";
 import Sprite from "../Sprite";
@@ -23,28 +20,17 @@ type Props = {
 
 export default function CharacterDetails({ character }: Props) {
   const [loading, setLoading] = useState(true);
-  const [episodes, setEpisodes] = useState([{ name: "" }]);
-  /* const { data: episodes, request: getEpisode } = useApi<Episodes>(
-    test.getEpisode
-  ); */
-  const getEpisode = async (episodeUrl: string) => {
-    try {
-      const response = await axios.get(episodeUrl);
-      console.log("Get episode" + response.data.name);
-      return response.data;
-    } catch (error) {
-      throw "Feil ved henting av: " + error;
-    }
-  };
+  const [episodes, setEpisodes] = useState([{ id: 0, name: "" }]);
 
   const getAllEpisodes = async () => {
     if (character) {
       let episode_info = [];
       for (let i in character.episode) {
-        episode_info.push(await getEpisode(character.episode[i]));
+        episode_info.push(
+          await rickAndMortyApi.getEpisode(character.episode[i])
+        );
       }
       setEpisodes(episode_info);
-      console.log(episodes);
     }
   };
 
@@ -88,6 +74,9 @@ export default function CharacterDetails({ character }: Props) {
             <Text style={styles.text}>
               Current location: {character.location?.name}
             </Text>
+            <Text style={[styles.text, styles.listText, styles.loader]}>
+              Starring in episodes:
+            </Text>
           </View>
           {loading ? (
             <ActivityIndicator
@@ -96,17 +85,19 @@ export default function CharacterDetails({ character }: Props) {
               style={styles.loader}
             />
           ) : (
-            <>
-              <Text style={styles.text}>Starring in episodes: </Text>
+            <View style={{ height: 200 }}>
               <FlatList
+                contentContainerStyle={{ paddingBottom: 20 }}
                 style={styles.episode_list}
                 data={episodes}
-                keyExtractor={(item) => item.name}
+                keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                  <Text style={styles.text}>{item.name}</Text>
+                  <Text style={[styles.text, styles.listText]}>
+                    {item.name}
+                  </Text>
                 )}
               />
-            </>
+            </View>
           )}
         </View>
       ) : null}
@@ -134,6 +125,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: "100%",
     backgroundColor: colors.dark,
+    borderBottomColor: colors.green,
+    borderBottomWidth: 2,
   },
   episode_list: {
     padding: 20,
@@ -145,7 +138,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-    color: "#53eae3",
+    color: colors.white,
+
+    marginBottom: 5,
+  },
+  listText: {
+    alignSelf: "center",
   },
   name: {
     fontSize: 24,

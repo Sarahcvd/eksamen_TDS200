@@ -29,7 +29,7 @@ export default function CharacterListItem({
         {image && <Sprite uri={image} size={40} />}
         <View style={{ flex: 1 }}>
           <Text style={[styles.text, styles.title]}>{name} </Text>
-          <Text style={styles.text}>{species}</Text>
+          <Text style={[styles.text, styles.species]}>{species}</Text>
         </View>
         <View style={styles.button}>
           <CharacterDetailsButton characterId={id} name={name} />
@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
   row: { flexDirection: "row" },
   container: { margin: 10 },
   title: { fontWeight: "600" },
+  species: { color: colors.white },
   text: {
-    color: colors.black,
+    color: colors.green,
     textTransform: "capitalize",
     marginLeft: 10,
     fontSize: 16,

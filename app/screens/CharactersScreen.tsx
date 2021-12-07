@@ -8,6 +8,7 @@ import {
 import rickAndMortyApi from "../api/rickAndMortyApi";
 import CharacterDetails from "../components/characterComponents/CharacterDetails";
 import ErrorHandler from "../components/ErrorHandler";
+import colors from "../config/colors";
 import useApi from "../hooks/useApi";
 import { Character } from "../types/Character";
 
@@ -37,5 +38,8 @@ export default function CharactersScreen({ characterId }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, alignItems: "center" },
+  container: {
+    padding: 20,
+    alignItems: "center",
+  },
 });
