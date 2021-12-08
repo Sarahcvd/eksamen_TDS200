@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import rickAndMortyApi from "../../api/rickAndMortyApi";
 import useApi from "../../hooks/useApi";
-import { AllLocations } from "../../types/AllLocations";
 import ErrorHandler from "../ErrorHandler";
 import ListItemSeperator from "../listComponents/ListItemSeperator";
 import LocationListItem from "./LocationListItem";

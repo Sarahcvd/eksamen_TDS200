@@ -1,5 +1,4 @@
 import axios from "axios";
-import { AllLocations } from "../types/AllLocations";
 import { Character } from "../types/Character";
 import { Episodes } from "../types/Episodes";
 import { Location } from "../types/Location";

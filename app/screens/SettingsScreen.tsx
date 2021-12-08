@@ -83,7 +83,7 @@ export default function SettingsScreen({
       <Text style={styles.text}>
         You are currently using a {currentOs} device
       </Text>
-      <Button title="Choose your profile image" onPress={pickImage} />
+      <Button title="Choose your profile picture" onPress={pickImage} />
       <Button
         title="Log out"
         onPress={() => {

@@ -31,8 +31,6 @@ const LoginScreen = ({
           onPress={() =>
             navigation.navigate("Authenticated", {
               username: username,
-              imageUri:
-                "https://i.pinimg.com/originals/09/99/81/09998176ee2a403758e6a959dbb4fca5.jpg",
             })
           }
         />
