@@ -35,7 +35,6 @@ const LoginScreen = ({
                 "https://i.pinimg.com/originals/09/99/81/09998176ee2a403758e6a959dbb4fca5.jpg",
             })
           }
-          type="green"
         />
       </View>
     </ImageBackground>
