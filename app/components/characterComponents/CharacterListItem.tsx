@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, StyleSheet, Text, View } from "react-native";
+import { Animated, Platform, StyleSheet, Text, View } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import colors from "../../config/colors";
 import CharacterDetailsButton from "../CharacterDetailsButton";
@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     height: 25,
+    ...Platform.select({
+      android: { color: colors.blue },
+    }),
   },
   button: {
     alignItems: "flex-end",

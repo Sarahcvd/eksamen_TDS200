@@ -1,6 +1,5 @@
 import React from "react";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
-import TabNavigation from "./app/components/navigators/TabNavigation";
 import LoginNavigator from "./app/components/navigators/LoginNavigator";
 import colors from "./app/config/colors";
 

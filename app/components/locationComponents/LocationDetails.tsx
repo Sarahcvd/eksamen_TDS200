@@ -5,6 +5,7 @@ import {
   View,
   FlatList,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import rickAndMortyApi from "../../api/rickAndMortyApi";
 import colors from "../../config/colors";
@@ -91,6 +92,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: "center",
     color: colors.green,
+    ...Platform.select({
+      android: { color: colors.blue },
+    }),
   },
   loader: {
     marginTop: 10,
@@ -107,5 +111,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.dark,
     borderBottomColor: colors.green,
     borderBottomWidth: 2,
+    ...Platform.select({
+      android: { borderBottomColor: colors.blue },
+    }),
   },
 });

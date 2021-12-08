@@ -4,13 +4,19 @@ import { LocationDetailsScreen } from "../../screens/LocationDetailsScreen";
 import { RootStackParamList } from "../../types/RootStackParamList";
 import LocationList from "../locationComponents/LocationList";
 import colors from "../../config/colors";
+import { Platform } from "react-native";
 
 const LocationNavigation = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: colors.green },
+        headerStyle: {
+          backgroundColor: colors.green,
+          ...Platform.select({
+            android: { backgroundColor: colors.blue },
+          }),
+        },
         headerTintColor: colors.dark,
       }}
     >

@@ -27,13 +27,22 @@ export default function User({ username, imageUri }: Props) {
       borderColor: colors.green,
       overflow: "hidden",
       marginBottom: 15,
+      ...Platform.select({
+        android: { borderColor: colors.blue },
+      }),
     },
     username: {
       color: colors.green,
       textTransform: "capitalize",
       fontSize: 30,
       marginBottom: 80,
-      fontFamily: Platform.OS == "android" ? "sans-serif" : "Helvetica Neue",
+      fontFamily: "Helvetica Neue",
+      ...Platform.select({
+        android: {
+          color: colors.blue,
+          fontFamily: "sans-serif",
+        },
+      }),
     },
   });
 

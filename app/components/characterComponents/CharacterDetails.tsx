@@ -11,7 +11,6 @@ import {
 import rickAndMortyApi from "../../api/rickAndMortyApi";
 import colors from "../../config/colors";
 import { Character } from "../../types/Character";
-import { Episodes } from "../../types/Episodes";
 import Sprite from "../Sprite";
 
 type Props = {
@@ -87,7 +86,10 @@ export default function CharacterDetails({ character }: Props) {
           ) : (
             <View style={{ height: 200 }}>
               <FlatList
-                contentContainerStyle={{ paddingBottom: 20 }}
+                contentContainerStyle={{
+                  paddingBottom: 25,
+                  ...Platform.select({ android: { paddingBottom: 38 } }),
+                }}
                 style={styles.episode_list}
                 data={episodes}
                 keyExtractor={(item) => item.id.toString()}
@@ -105,15 +107,6 @@ export default function CharacterDetails({ character }: Props) {
   );
 }
 
-const osStyles = Platform.select({
-  ios: {
-    fontFamily: "Helvetica Neue",
-  },
-  android: {
-    fontFamily: "sans-serif",
-  },
-});
-
 const styles = StyleSheet.create({
   container: {
     width: "100%",
@@ -127,6 +120,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.dark,
     borderBottomColor: colors.green,
     borderBottomWidth: 2,
+    ...Platform.select({
+      android: { borderBottomColor: colors.blue },
+    }),
   },
   episode_list: {
     padding: 20,
@@ -139,8 +135,15 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 17,
     color: colors.white,
-
     marginBottom: 5,
+    ...Platform.select({
+      ios: {
+        fontFamily: "Helvetica Neue",
+      },
+      android: {
+        fontFamily: "sans-serif",
+      },
+    }),
   },
   listText: {
     alignSelf: "center",
@@ -149,13 +152,24 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textTransform: "capitalize",
     marginBottom: 8,
-    ...osStyles,
+    ...Platform.select({
+      ios: {
+        fontFamily: "Helvetica Neue",
+        paddingTop: 6,
+      },
+      android: {
+        fontFamily: "sans-serif",
+        paddingTop: 2,
+      },
+    }),
   },
   circle: {
     width: 12,
     height: 12,
     borderRadius: 12 / 2,
-    marginBottom: 20,
-    marginTop: 5,
+    ...Platform.select({
+      ios: { marginTop: 4 },
+      android: { marginTop: 7 },
+    }),
   },
 });

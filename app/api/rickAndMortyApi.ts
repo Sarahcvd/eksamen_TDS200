@@ -21,17 +21,6 @@ const getAllCharacters = async () => {
   }
 };
 
-/* const filterSearch: (text: string) => void = async (text: string) => {
-  try {
-    const response = await axios.get<Character>(
-      `https://rickandmortyapi.com/api/character/?name=${text.toLocaleLowerCase()}`
-    );
-    return response.data;
-  } catch (error) {
-    throw "Feil ved henting av: " + error;
-  }
-}; */
-
 const getCharacter = async (characterId: number) => {
   try {
     const response = await axios.get<Character>(

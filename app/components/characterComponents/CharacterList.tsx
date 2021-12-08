@@ -42,38 +42,33 @@ export default function CharacterList() {
 
   return (
     <View>
-      <SearchBar
-        searchIcon={{ size: 25 }}
-        onChangeText={(text: string) => filterSearch(text)}
-        onClear={() => filterSearch("")}
-        placeholder="Filter characters"
-        value={search}
-        platform={"default"}
-      />
-      <FlatList
-        data={filteredCharacters}
-        keyExtractor={(nameobject) => nameobject.id.toString()}
-        renderItem={({ item }) => (
-          <CharacterListItem
-            id={item.id}
-            name={item.name}
-            species={item.species}
-            image={item.image}
+      {!error && !loading && (
+        <>
+          <SearchBar
+            searchIcon={{ size: 25 }}
+            onChangeText={(text: string) => filterSearch(text)}
+            onClear={() => filterSearch("")}
+            placeholder="Filter characters"
+            value={search}
+            platform={"default"}
           />
-        )}
-        ItemSeparatorComponent={() => <ListItemSeperator />}
-        refreshing={loading}
-        onRefresh={getAllCharacters}
-      />
+          <FlatList
+            data={filteredCharacters}
+            keyExtractor={(nameobject) => nameobject.id.toString()}
+            renderItem={({ item }) => (
+              <CharacterListItem
+                id={item.id}
+                name={item.name}
+                species={item.species}
+                image={item.image}
+              />
+            )}
+            ItemSeparatorComponent={() => <ListItemSeperator />}
+            refreshing={loading}
+            onRefresh={getAllCharacters}
+          />
+        </>
+      )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 5,
-    padding: 5,
-    backgroundColor: colors.white,
-  },
-});

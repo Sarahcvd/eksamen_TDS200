@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import colors from "../../config/colors";
 import { RootStackParamList } from "../../types/RootStackParamList";
 import LocationDetailsButton from "../LocationDetailsButton";
@@ -12,7 +12,7 @@ type Props = {
   dimension?: string;
 };
 
-export default function LocationListItem({ id, name, type, dimension }: Props) {
+export default function LocationListItem({ id, name, dimension }: Props) {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
@@ -31,7 +31,13 @@ export default function LocationListItem({ id, name, type, dimension }: Props) {
 const styles = StyleSheet.create({
   row: { flexDirection: "row" },
   container: { margin: 10 },
-  title: { fontWeight: "600", color: colors.green },
+  title: {
+    fontWeight: "600",
+    color: colors.green,
+    ...Platform.select({
+      android: { color: colors.blue },
+    }),
+  },
   text: {
     color: colors.white,
     textTransform: "capitalize",

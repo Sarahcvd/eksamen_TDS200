@@ -4,6 +4,7 @@ import {
   StyleSheet,
   GestureResponderEvent,
   TouchableHighlight,
+  Platform,
 } from "react-native";
 
 import colors from "../config/colors";
@@ -11,19 +12,21 @@ import colors from "../config/colors";
 type Props = {
   onPress: (event: GestureResponderEvent) => void;
   title: string;
-  type?: "primary" | "secondary" | "light" | "danger" | "green" | "blue";
+  type?: "green" | "blue";
 };
 
-export default function Button({ onPress, title, type = "primary" }: Props) {
+export default function Button({ onPress, title, type = "green" }: Props) {
   const styles = StyleSheet.create({
     button: {
       backgroundColor: colors[type],
-      marginBottom: 15,
-      padding: 12,
-      borderRadius: 20,
+      padding: 8,
+      borderRadius: 3,
       alignItems: "center",
       borderWidth: 1,
       borderColor: colors.dark,
+      ...Platform.select({
+        android: { backgroundColor: colors.blue },
+      }),
     },
     text: {
       fontSize: 15,

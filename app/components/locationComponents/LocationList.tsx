@@ -44,7 +44,3 @@ export default function LocationList({ refreshList }: Props) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});
