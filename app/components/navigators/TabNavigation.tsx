@@ -67,7 +67,6 @@ const TabNavigation = ({
         }}
         initialParams={{
           username: route.params.username,
-          imageUri: route.params.imageUri,
         }}
       />
     </Tab.Navigator>

@@ -108,6 +108,5 @@ const styles = StyleSheet.create({
   text: {
     color: colors.white,
     textAlign: "center",
-    //marginBottom: 50,
   },
 });

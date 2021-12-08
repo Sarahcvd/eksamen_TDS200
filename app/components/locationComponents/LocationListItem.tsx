@@ -1,8 +1,6 @@
-import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import colors from "../../config/colors";
-import { RootStackParamList } from "../../types/RootStackParamList";
 import LocationDetailsButton from "../LocationDetailsButton";
 
 type Props = {
@@ -13,8 +11,6 @@ type Props = {
 };
 
 export default function LocationListItem({ id, name, dimension }: Props) {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
   return (
     <View style={[styles.row, styles.container]}>
       <View style={{ flex: 1 }}>
