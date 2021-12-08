@@ -1,6 +1,5 @@
 import { NavigationProp, useNavigation } from "@react-navigation/core";
 import React from "react";
-import colors from "../config/colors";
 import { RootStackParamList } from "../types/RootStackParamList";
 import Button from "./Button";
 

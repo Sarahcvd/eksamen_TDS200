@@ -12,13 +12,12 @@ import colors from "../config/colors";
 type Props = {
   onPress: (event: GestureResponderEvent) => void;
   title: string;
-  type?: "green" | "blue";
 };
 
-export default function Button({ onPress, title, type = "green" }: Props) {
+export default function Button({ onPress, title }: Props) {
   const styles = StyleSheet.create({
     button: {
-      backgroundColor: colors[type],
+      backgroundColor: colors.green,
       padding: 8,
       borderRadius: 3,
       alignItems: "center",

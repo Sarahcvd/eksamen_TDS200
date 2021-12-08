@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import rickAndMortyApi from "../api/rickAndMortyApi";
 import ErrorHandler from "../components/ErrorHandler";
 import LocationDetails from "../components/locationComponents/LocationDetails";

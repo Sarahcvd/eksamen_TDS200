@@ -17,7 +17,7 @@ const getAllCharacters = async () => {
     );
     return response.data;
   } catch (error) {
-    throw "Feil ved henting av: " + error;
+    throw "Error: " + error;
   }
 };
 
@@ -29,7 +29,7 @@ const getCharacter = async (characterId: number) => {
     if (characterId === 4) throw "";
     return response.data;
   } catch (error) {
-    throw "Feil ved henting av: " + error;
+    throw "Error: " + error;
   }
 };
 
@@ -38,7 +38,7 @@ const getAllLocations = async () => {
     const response = await axios.get<AllLocations>(`${baseURL}location/`);
     return response.data;
   } catch (error) {
-    throw "Feil ved henting av: " + error;
+    throw "Error: " + error;
   }
 };
 
@@ -49,7 +49,7 @@ const getLocation = async (locationId: number) => {
     );
     return response.data;
   } catch (error) {
-    throw "Feil ved henting av: " + error;
+    throw "Error: " + error;
   }
 };
 
@@ -58,7 +58,7 @@ const getEpisode = async (episodeUrl: string) => {
     const response = await axios.get<Episodes>(episodeUrl);
     return response.data;
   } catch (error) {
-    throw "Feil ved henting av: " + error;
+    throw "Error: " + error;
   }
 };
 const getResidents = async (residentUrl: string) => {
@@ -66,7 +66,7 @@ const getResidents = async (residentUrl: string) => {
     const response = await axios.get<Character>(residentUrl);
     return response.data;
   } catch (error) {
-    throw "Feil ved henting av: " + error;
+    throw "Error: " + error;
   }
 };
 
@@ -77,5 +77,4 @@ export default {
   getAllCharacters,
   getAllLocations,
   getResidents,
-  //filterCharacters: filterSearch,
 };

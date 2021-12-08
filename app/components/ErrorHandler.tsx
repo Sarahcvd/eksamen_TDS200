@@ -7,7 +7,7 @@ export default function ErrorHandler({ onPress }: Props) {
   return (
     <>
       <Text>Error </Text>
-      <Button title="Prøv igjen" onPress={onPress} />
+      <Button title="Try Again" onPress={onPress} />
     </>
   );
 }

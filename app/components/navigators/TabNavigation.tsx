@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { RootStackParamList } from "../../types/RootStackParamList";
 import CharacterNavigation from "./CharacterNavigation";
 import { FontAwesome5 } from "@expo/vector-icons";
 import LocationNavigation from "./LocationNavigation";

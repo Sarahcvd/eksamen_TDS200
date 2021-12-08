@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, View } from "react-native";
 import rickAndMortyApi from "../../api/rickAndMortyApi";
 import CharacterListItem from "./CharacterListItem";
 import ListItemSeperator from "../listComponents/ListItemSeperator";
 import useApi from "../../hooks/useApi";
 import { Character } from "../../types/Character";
-import colors from "../../config/colors";
 import { SearchBar } from "react-native-elements";
+import ErrorHandler from "../ErrorHandler";
+import colors from "../../config/colors";
 
 export default function CharacterList() {
   const {
@@ -31,7 +32,6 @@ export default function CharacterList() {
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
-
       setFilteredCharacters(await filteredData);
       setSearch(text);
     } else {
@@ -42,6 +42,7 @@ export default function CharacterList() {
 
   return (
     <View>
+      {error && <ErrorHandler onPress={() => getAllCharacters()} />}
       {!error && !loading && (
         <>
           <SearchBar
@@ -51,6 +52,9 @@ export default function CharacterList() {
             placeholder="Filter characters"
             value={search}
             platform={"default"}
+            containerStyle={{ backgroundColor: colors.dark }}
+            inputStyle={{ backgroundColor: colors.white }}
+            inputContainerStyle={{ backgroundColor: colors.white }}
           />
           <FlatList
             data={filteredCharacters}
