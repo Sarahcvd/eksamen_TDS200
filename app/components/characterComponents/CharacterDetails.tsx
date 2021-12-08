@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, Platform, StyleSheet, Text, View } from "react-native";
 import rickAndMortyApi from "../../api/rickAndMortyApi";
 import colors from "../../config/colors";
 import { Character } from "../../types/Character";
@@ -48,7 +40,7 @@ export default function CharacterDetails({ character }: Props) {
   };
 
   return (
-    <SafeAreaView>
+    <>
       {character ? (
         <View style={styles.container}>
           <Sprite uri={character.image} />
@@ -78,17 +70,13 @@ export default function CharacterDetails({ character }: Props) {
             </Text>
           </View>
           {loading ? (
-            <ActivityIndicator
-              color="#005"
-              size="large"
-              style={styles.loader}
-            />
+            <Text style={styles.text}>Loading...</Text>
           ) : (
-            <View style={{ height: 200 }}>
+            <View style={{ height: 230 }}>
               <FlatList
                 contentContainerStyle={{
-                  paddingBottom: 25,
-                  ...Platform.select({ android: { paddingBottom: 38 } }),
+                  paddingBottom: 20,
+                  ...Platform.select({ android: { paddingBottom: 50 } }),
                 }}
                 style={styles.episode_list}
                 data={episodes}
@@ -103,7 +91,7 @@ export default function CharacterDetails({ character }: Props) {
           )}
         </View>
       ) : null}
-    </SafeAreaView>
+    </>
   );
 }
 
@@ -111,7 +99,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     alignItems: "center",
-    marginTop: -20,
+    marginTop: -40,
   },
   description: {
     padding: 20,
@@ -154,10 +142,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     ...Platform.select({
       ios: {
+        color: colors.green,
         fontFamily: "Helvetica Neue",
         paddingTop: 6,
       },
       android: {
+        color: colors.blue,
         fontFamily: "sans-serif",
         paddingTop: 2,
       },

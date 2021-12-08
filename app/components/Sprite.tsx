@@ -5,6 +5,7 @@ import {
   ImageSourcePropType,
   View,
   StyleSheet,
+  Platform,
 } from "react-native";
 import colors from "../config/colors";
 
@@ -30,9 +31,14 @@ export default function Sprite({
 
 const styles = StyleSheet.create({
   image: {
-    borderColor: colors.gray,
+    borderColor: colors.green,
     borderWidth: 2,
     marginBottom: 8,
     overflow: "hidden",
+    ...Platform.select({
+      android: {
+        borderColor: colors.blue,
+      },
+    }),
   },
 });

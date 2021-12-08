@@ -43,17 +43,16 @@ export default function LocationDetails({ location }: Props) {
             <Text style={styles.name}>{location.name}</Text>
             <Text style={styles.text}>Type: {location.type}</Text>
             <Text style={styles.text}>
-              This {location.type} resides in the "{location.dimension}"
-              dimension
+              This{" "}
+              <Text style={{ fontStyle: "italic", fontWeight: "bold" }}>
+                {location.type}
+              </Text>{" "}
+              resides in the following demention: "{location.dimension}"
             </Text>
-            <Text style={styles.text}>Residents:</Text>
+            <Text style={{ marginTop: 15, ...styles.text }}>Residents:</Text>
           </View>
           {loading ? (
-            <ActivityIndicator
-              color="#fff"
-              size="large"
-              style={styles.loader}
-            />
+            <ActivityIndicator animating={loading} size="large" />
           ) : (
             <View style={{ height: 400 }}>
               <FlatList
@@ -64,6 +63,7 @@ export default function LocationDetails({ location }: Props) {
                 renderItem={({ item }) => (
                   <Text style={styles.text}>{item.name}</Text>
                 )}
+                refreshing={loading}
               />
             </View>
           )}

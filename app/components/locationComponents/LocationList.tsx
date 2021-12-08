@@ -13,7 +13,7 @@ export default function LocationList() {
     loading,
     error,
     request: getAllLocations,
-  } = useApi<AllLocations>(rickAndMortyApi.getAllLocations);
+  } = useApi<Location>(rickAndMortyApi.getAllLocations);
 
   useEffect(() => {
     getAllLocations();
@@ -25,7 +25,7 @@ export default function LocationList() {
       {!error && !loading && (
         <>
           <FlatList
-            data={locations?.results}
+            data={locations}
             keyExtractor={(nameobject) => nameobject.id.toString()}
             renderItem={({ item }) => (
               <LocationListItem

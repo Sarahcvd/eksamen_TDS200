@@ -10,27 +10,15 @@ import {
 
 import colors from "../config/colors";
 
-type Props = { username: string; imageUri: string };
+type Props = { username: string };
 
-export default function User({ username, imageUri }: Props) {
+export default function User({ username }: Props) {
   const { width } = Dimensions.get("screen");
 
   const size = width / 2;
 
   const styles = StyleSheet.create({
     container: { alignItems: "center" },
-    imageContainer: {
-      width: size,
-      height: size,
-      borderRadius: 25,
-      borderWidth: 1,
-      borderColor: colors.green,
-      overflow: "hidden",
-      marginBottom: 15,
-      ...Platform.select({
-        android: { borderColor: colors.blue },
-      }),
-    },
     username: {
       color: colors.green,
       textTransform: "capitalize",
@@ -49,9 +37,6 @@ export default function User({ username, imageUri }: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.username}>Hello {username}!</Text>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: imageUri, width: size, height: size }} />
-      </View>
     </View>
   );
 }

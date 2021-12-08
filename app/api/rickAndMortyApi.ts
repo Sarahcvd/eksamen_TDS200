@@ -13,7 +13,7 @@ const getAllCharacters = async () => {
   }
   try {
     const response = await axios.get<Character>(
-      `https://rickandmortyapi.com/api/character/${numberArray}`
+      `${baseURL}/character/${numberArray}`
     );
     return response.data;
   } catch (error) {
@@ -34,8 +34,14 @@ const getCharacter = async (characterId: number) => {
 };
 
 const getAllLocations = async () => {
+  let numberArray = [];
+  for (let i = 1; i < 127; i++) {
+    numberArray.push(i);
+  }
   try {
-    const response = await axios.get<AllLocations>(`${baseURL}location/`);
+    const response = await axios.get<Location>(
+      `${baseURL}location/${numberArray}`
+    );
     return response.data;
   } catch (error) {
     throw "Error: " + error;
